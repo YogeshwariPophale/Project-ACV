@@ -331,6 +331,10 @@ h1 {
   gap: 16px;
 }
 
+.discussion-grid {
+  margin-top: 18px;
+}
+
 .info-card,
 .strength-layout article {
   padding: 22px;
@@ -443,6 +447,110 @@ h1 {
 .experiment-list {
   display: grid;
   gap: 16px;
+}
+
+.study-block {
+  margin-bottom: 28px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid rgba(23, 32, 38, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(23, 32, 38, 0.06);
+}
+
+.study-block h3 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+}
+
+.study-block p {
+  color: var(--muted);
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 18px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.table-wrap.narrow {
+  max-width: 720px;
+}
+
+.data-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: white;
+}
+
+.table-wrap.narrow .data-table {
+  min-width: 520px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid rgba(23, 32, 38, 0.1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  color: var(--ink);
+  background: rgba(11, 122, 117, 0.09);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.data-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.best-row td {
+  background: rgba(11, 122, 117, 0.08);
+  font-weight: 700;
+}
+
+.fail-row td {
+  background: rgba(199, 81, 70, 0.08);
+  font-weight: 700;
+}
+
+.finding {
+  margin: 16px 0 0;
+  padding: 16px;
+  color: var(--ink);
+  background: rgba(36, 91, 137, 0.08);
+  border-left: 5px solid var(--blue);
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.finding.fail {
+  background: rgba(199, 81, 70, 0.08);
+  border-left-color: var(--coral);
+}
+
+.lineage-list {
+  display: grid;
+  gap: 12px;
+}
+
+.lineage-list article {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.lineage-list span {
+  color: var(--muted);
 }
 
 .experiment-card {
@@ -631,6 +739,7 @@ h1 {
   .snapshot,
   .content-grid,
   .info-grid,
+  .discussion-grid,
   .strength-layout,
   .result-grid,
   .paper-panel {
@@ -699,6 +808,7 @@ h1 {
 
   .paper-panel,
   .experiment-card,
+  .study-block,
   .takeaway-panel {
     padding: 20px;
   }

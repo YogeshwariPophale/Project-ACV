@@ -1,11 +1,11 @@
 # DiffTrack ACV Project Webpage
 
-Static GitHub Pages site for the EE 243 ACV DiffTrack paper lineage and limitation study.
+Static GitHub Pages site generated from `Project deliverables.docx` for the EE 243 ACV DiffTrack parameter study, limitations, discussion, and lineage.
 
 ## Edit
 
-- Update `index.html` if you want to add more screenshots, videos, or exact links to the original paper/code.
-- Replace or extend the result tiles with qualitative outputs from `DiffTrack_Results.zip`.
+- Update `index.html` if the deliverables document changes.
+- Add visual examples from `DiffTrack_Results.zip` if you want qualitative videos/screenshots on the page.
 - Keep `styles.css`, `script.js`, and `assets/lineage-map.svg` in the repository root structure.
 
 ## Publish on GitHub Pages
