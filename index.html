@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ACV project webpage analyzing DiffTrack, a video diffusion model approach for unsupervised point tracking.">
+  <title>DiffTrack ACV Project | Strengths and Limitations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <nav class="nav-shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="DiffTrack project home">
+        <span class="brand-mark">ACV</span>
+        <span>DiffTrack Study</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="primary-links">
+        <a href="#lineage">Lineage</a>
+        <a href="#frontier">Paper</a>
+        <a href="#strengths">Strengths</a>
+        <a href="#experiments">Experiments</a>
+        <a href="#results">Results</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-band">
+      <div class="hero-copy">
+        <p class="eyebrow">EE 243 Advanced Computer Vision</p>
+        <h1>DiffTrack: Strengths, Limits, and Attention Failures</h1>
+        <p class="hero-lede">
+          An empirical study of how video diffusion attention can track points
+          without labels, and where the method breaks under timestep, layer, and
+          long-range motion stress tests.
+        </p>
+        <div class="hero-actions" aria-label="Project links">
+          <a class="button primary" href="#experiments">View Experiments</a>
+          <a class="button secondary" href="https://github.com/YogeshwariPophale/Project-ACV" target="_blank" rel="noreferrer">GitHub Repo</a>
+        </div>
+      </div>
+      <figure class="hero-visual">
+        <img src="assets/lineage-map.svg" alt="Diagram showing diffusion models and tracking research leading to DiffTrack.">
+      </figure>
+    </section>
+
+    <section class="snapshot" aria-label="Project snapshot">
+      <article>
+        <span class="snapshot-label">Target Paper</span>
+        <strong>DiffTrack</strong>
+        <p>Repurposes video diffusion attention for unsupervised point tracking.</p>
+      </article>
+      <article>
+        <span class="snapshot-label">Model</span>
+        <strong>CogVideoX-2B</strong>
+        <p>Pre-trained video diffusion checkpoint, used without fine-tuning.</p>
+      </article>
+      <article>
+        <span class="snapshot-label">Evidence</span>
+        <strong>9 controlled runs</strong>
+        <p>Layer, timestep, chunking, long-gap, and CAG limitation probes.</p>
+      </article>
+    </section>
+
+    <section class="content-grid" id="overview">
+      <aside class="side-note">
+        <p class="eyebrow">Research Question</p>
+        <h2>Can diffusion attention track?</h2>
+      </aside>
+      <div class="content-main">
+        <p class="section-intro">
+          DiffTrack asks whether a generative video diffusion model has already
+          learned enough spatial correspondence to act as a tracker. Instead of
+          training on labeled tracking data, it extracts query-key attention maps
+          from CogVideoX and turns those maps into point trajectories.
+        </p>
+        <div class="info-grid">
+          <article class="info-card">
+            <h3>Task</h3>
+            <p>Given a query point in frame 0, predict its position across later frames in a video.</p>
+          </article>
+          <article class="info-card">
+            <h3>Method</h3>
+            <p>Add diffusion noise, run CogVideoX, capture attention maps, and decode weighted coordinates.</p>
+          </article>
+          <article class="info-card">
+            <h3>Metric</h3>
+            <p>Mean pixel error, reported as delta_avg and distance-specific errors delta_1 through delta_16.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid section-band" id="lineage">
+      <aside class="side-note">
+        <p class="eyebrow">Trace the Lineage</p>
+        <h2>From diffusion features to tracking</h2>
+      </aside>
+      <div class="content-main">
+        <div class="timeline">
+          <article class="timeline-item">
+            <span class="year">2022</span>
+            <div>
+              <h3>Latent Diffusion Models</h3>
+              <p>Established efficient latent-space diffusion and text-conditioned attention as a reusable visual representation.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="year">2022</span>
+            <div>
+              <h3>Prompt-to-Prompt</h3>
+              <p>Showed that diffusion cross-attention maps spatially align text tokens with image regions.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <span class="year">2023</span>
+            <div>
+              <h3>Emergent Correspondence</h3>
+              <p>Found that diffusion features encode correspondence across related scenes, motivating tracking applications.</p>
+            </div>
+          </article>
+          <article class="timeline-item highlight">
+            <span class="year">2024</span>
+            <div>
+              <h3>DiffTrack</h3>
+              <p>Uses attention inside a pre-trained video diffusion transformer as a zero-label point tracker.</p>
+            </div>
+          </article>
+          <article class="timeline-item frontier">
+            <span class="year">2025+</span>
+            <div>
+              <h3>Video DiT tracking frontier</h3>
+              <p>Successors such as DiTracker and TrackCraft3R continue the idea of repurposing video diffusion transformers for stronger tracking.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid" id="frontier">
+      <aside class="side-note">
+        <p class="eyebrow">Target Paper</p>
+        <h2>Open-source experiment target</h2>
+      </aside>
+      <div class="content-main">
+        <div class="paper-panel">
+          <div>
+            <span class="tag">No training required</span>
+            <h3>DiffTrack: Repurposing Video Diffusion Models as Unsupervised Point Trackers</h3>
+            <p class="paper-meta">Zhang et al., ECCV 2024</p>
+            <p>
+              We selected DiffTrack because it is recent, uses released video
+              diffusion checkpoints, and exposes a clear empirical question:
+              are attention maps genuinely reliable trackers, or only useful
+              under narrow conditions?
+            </p>
+          </div>
+          <dl class="resource-list">
+            <div>
+              <dt>Project Repo</dt>
+              <dd><a href="https://github.com/YogeshwariPophale/Project-ACV" target="_blank" rel="noreferrer">GitHub</a></dd>
+            </div>
+            <div>
+              <dt>Checkpoint</dt>
+              <dd>CogVideoX-2B</dd>
+            </div>
+            <div>
+              <dt>Compute</dt>
+              <dd>RTX A6000</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid section-band" id="strengths">
+      <aside class="side-note">
+        <p class="eyebrow">Strengths</p>
+        <h2>What works well</h2>
+      </aside>
+      <div class="content-main">
+        <div class="strength-layout">
+          <article>
+            <h3>Zero tracking supervision</h3>
+            <p>DiffTrack extracts correspondence from a generative model trained for video synthesis, avoiding labeled tracking data.</p>
+          </article>
+          <article>
+            <h3>Strong short-range precision</h3>
+            <p>The best configuration reaches 0.8 px error at a 1-frame gap, showing very sharp local correspondence.</p>
+          </article>
+          <article>
+            <h3>Actionable internals</h3>
+            <p>Layer and timestep ablations reveal where spatial precision and cross-frame attention are strongest.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid" id="experiments">
+      <aside class="side-note">
+        <p class="eyebrow">Limitations</p>
+        <h2>Targeted experiments</h2>
+      </aside>
+      <div class="content-main">
+        <p class="section-intro">
+          We ran controlled experiments on DAVIS videos using the released
+          checkpoint. Each probe changes one variable so the failure mode is
+          visible rather than speculative.
+        </p>
+        <div class="experiment-list">
+          <article class="experiment-card">
+            <div class="experiment-index">01</div>
+            <div>
+              <h3>Timestep sensitivity</h3>
+              <p><strong>Setup:</strong> Compare t=1, t=10, t=30, and t=49 at layer 17.</p>
+              <p><strong>Finding:</strong> t=10 achieves 13.1 delta_avg, a 72% improvement over the t=49 default at 47.0.</p>
+              <p><strong>Failure:</strong> t=1 produces complete failure, showing the tracker depends on diffusion noise.</p>
+            </div>
+          </article>
+          <article class="experiment-card">
+            <div class="experiment-index">02</div>
+            <div>
+              <h3>Layer brittleness</h3>
+              <p><strong>Setup:</strong> Compare attention extraction at layers 5, 8, 17, 27, and 29.</p>
+              <p><strong>Finding:</strong> Layer 5 reaches 31.3 delta_avg, beating the paper's layer 17 default by 34%.</p>
+              <p><strong>Failure:</strong> Performance varies by roughly 50%, so deployment requires dataset-specific layer search.</p>
+            </div>
+          </article>
+          <article class="experiment-card">
+            <div class="experiment-index">03</div>
+            <div>
+              <h3>Temporal degradation</h3>
+              <p><strong>Setup:</strong> Measure errors at frame gaps delta_1, delta_2, delta_4, delta_8, and delta_16.</p>
+              <p><strong>Finding:</strong> The best configuration grows from 0.8 px at a 1-frame gap to 73.8 px at a 16-frame gap.</p>
+              <p><strong>Failure:</strong> The method lacks motion memory, so large displacement quickly breaks correspondence.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid section-band" id="results">
+      <aside class="side-note">
+        <p class="eyebrow">Evidence</p>
+        <h2>Key results</h2>
+      </aside>
+      <div class="content-main">
+        <div class="result-grid">
+          <figure class="result-tile">
+            <div class="metric-art success">
+              <span>13.1</span>
+              <small>delta_avg at t=10</small>
+            </div>
+            <figcaption>Light noise activates useful correspondence while keeping spatial features sharp.</figcaption>
+          </figure>
+          <figure class="result-tile">
+            <div class="metric-art mixed">
+              <span>31.3</span>
+              <small>delta_avg at layer 5</small>
+            </div>
+            <figcaption>Shallow transformer features preserve point-level localization better than the default layer 17.</figcaption>
+          </figure>
+          <figure class="result-tile">
+            <div class="metric-art failure">
+              <span>92x</span>
+              <small>error growth by 16-frame gap</small>
+            </div>
+            <figcaption>Long-range motion causes attention matches to diffuse across plausible but wrong locations.</figcaption>
+          </figure>
+        </div>
+        <div class="takeaway-panel compact">
+          <h3>Final interpretation</h3>
+          <p>
+            DiffTrack is genuinely impressive as evidence that video diffusion
+            transformers encode correspondence. But the experiments show that
+            this capability is fragile: it depends on the right noise level, the
+            right layer, and short temporal gaps. The method is strongest as a
+            representation probe and weakest as a deployable long-horizon tracker.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>EE 243 Computer Vision | DiffTrack Final Project</p>
+    <a href="#top">Back to top</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
